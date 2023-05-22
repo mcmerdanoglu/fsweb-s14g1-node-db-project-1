@@ -48,7 +48,7 @@ exports.checkAccountNameUnique = async (req, res, next) => {
   // KODLAR BURAYA
   try {
     let isExisting = false;
-    //KÖTÜ ÇÖZÜM START
+    // KÖTÜ ÇÖZÜM START
     /* const accountExist = await accountsModel.getAll(); //kayıt sayısı çok olunca performans problemine yol açar.
     for (let i = 0; i < accountExist.length; i++) {
       const item = accountExist[i];
@@ -57,12 +57,12 @@ exports.checkAccountNameUnique = async (req, res, next) => {
         break;
       }
     }*/
-    //KÖTÜ ÇÖZÜM END
+    // KÖTÜ ÇÖZÜM END
 
-    //İYİ ÇÖZÜM START
+    // İYİ ÇÖZÜM START
     const existingAccount = await accountsModel.getByName(req.body.name);
     isExisting = existingAccount != null;
-    //İYİ ÇÖZÜM END
+    // İYİ ÇÖZÜM END
 
     if (isExisting) {
       res.status(400).json({ message: "that name is taken" });
